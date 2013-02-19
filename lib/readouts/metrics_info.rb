@@ -2,12 +2,13 @@ module Readouts
   class MetricsInfo
     require 'hashie'
 
-    attr_accessor :metrics, :app_info, :env_filter,:app_name, :file_root,:github_base_url
+    attr_accessor :metrics, :app_info, :env_filter,:app_name, :file_root,:github_base_url, :headers_enabled
     class_attribute :config_block
 
     def initialize()
       @metrics = Hashie::Mash.new
       @app_info = Hashie::Mash.new
+      @headers_enabled = false
       @env_filter = []
       MetricsInfo.config_block.call(self) if MetricsInfo.config_block
     end
@@ -23,6 +24,10 @@ module Readouts
 
     def register_app_info(name,data,info='')
       @app_info.deep_update( {name.parameterize.gsub('-','_') => {:data => data,:info => info, :name => name}})
+    end
+
+    def enable_headers(val= false)
+      self.headers_enabled = val
     end
 
     def env_info
