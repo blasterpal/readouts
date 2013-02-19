@@ -34,3 +34,7 @@ rake test
 * bundle exec pry -r ./lib/readouts
 
 Not tested on Windows
+
+== Copyright
+
+Copright © 2013 Hank Beaver and Obie Fernandez
