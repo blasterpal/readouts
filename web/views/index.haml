@@ -1,0 +1,32 @@
+.masthead
+  %h2.muted #{@metrics_info.app_info.app_name.data} Ops Dashboard
+  %ul.nav.nav-pills#ops_nav
+    - @metrics_info.metrics.each do |key,metric|
+      %li
+        %a{:href=> "##{metric.name}", "data-toggle" => 'tab'} #{metric.name.humanize}
+  .tab-content#ops_content
+    - @metrics_info.metrics.each do |key,metric| 
+      %div{:class=>'tab-pane', :id => "#{metric.name}"}
+        .well 
+          .alert.alert-info 
+            = metric.info
+          %table.table.table-striped.table-bordered
+            %thead
+              %tr
+                %th
+                  Name
+                %th
+                  Value
+            %tbody
+              - if metric.data
+                - metric.data.each do |k,v|
+                  %tr
+                    %td
+                      = k
+                    %td
+                      = v
+              - else
+                %tr
+                  %td
+                  %td
+

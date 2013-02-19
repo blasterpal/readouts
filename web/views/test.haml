@@ -1,0 +1,7 @@
+- @metrics_info.metrics.each_value do |m|
+  = m.name
+  - m.values do |k,v|
+    = k
+    = v
+  %hr
+

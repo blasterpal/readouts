@@ -1,0 +1,15 @@
+= Readouts
+
+This project was inspiried by my work and that of others on this project: https://github.com/primedia/ops. 
+
+
+== Configuration
+
+
+== Testing
+
+* bundle exec rackup -p 3001
+* bundle exec irb -r ./lib/readouts
+* bundle exec pry -r ./lib/readouts
+
+Not tested on Windows
