@@ -11,14 +11,12 @@ module Readouts
 
     helpers do
       #get some model data here
-      def link_to(name,url)
-        haml "%a{:href=> url } #{name}"
-      end
     end
 
     get '/' do 
       @metrics_info = MetricsInfo.new
       @metrics_info.register_metric 'http_headers', request.env if @metrics_info.headers_enabled
+      @metrics_info.register_app_info 'version', @metrics_info.version_or_branch if @metrics_info.version_info_enabled
       haml :index
     end
     

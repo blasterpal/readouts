@@ -1,5 +1,10 @@
-- @metrics_info.app_info.each do |key,mash|
+- if @metrics_info.version_info_enabled 
   %span.label
-    = key
+    Version 
   %span
-    = mash.data
+    = @metrics_info.version_or_branch
+%span.label
+  Commit Link
+%span
+  %a{:href=> @metrics_info.repo_link}  #{@metrics_info.repo_link}
+

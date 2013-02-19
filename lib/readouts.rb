@@ -4,5 +4,4 @@ require_relative 'readouts/web'
 
 APP_ROOT = File.join(File.dirname(__FILE__), '../')
 module Readouts
-
 end
