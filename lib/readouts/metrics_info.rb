@@ -25,11 +25,7 @@ module Readouts
     def register_app_info(name,data,info='')
       @app_info.deep_update( {name.parameterize.gsub('-','_') => {:data => data,:info => info, :name => name}})
     end
-
-    def enable_headers(val= false)
-      self.headers_enabled = val
-    end
-
+    
     def env_info
       #env_filter = ['PATH','RACK_ENV','FOO_BAR','USER'] #add other keys you want to see values of here from the ENV
       if env_filter && env_filter.size > 0
