@@ -6,15 +6,21 @@ This project was inspiried by my work and that of others on this project: https:
 == Configuration
 
 The config.ru is a great example of how'd you'd use metrics. You can define really complex metrics to gather and inject into tabs. Everything from your Sidekiq queues to whatever you can think of.
+To configure Readouts, you call methods or setters for specific options using a block style.
 
     Readouts::MetricsInfo.configure do |c|
-      c.register_metric 'my_metric', {:foo => 'bar'}
-      c.register_app_info 'app_name', 'Readouts'
-      c.register_app_info 'file_root', Dir[__FILE__]
-      c.register_app_info 'github_base_url', 'https://github.com/blasterpal/readouts'
+      # configure the basics about your app
+      c.app_name = 'My Great App'
+      c.github_base_url = 'https://github.com/blasterpal/readouts'
+      c.file_root = Dir[__FILE__] #to set relativy for finding REVISION file
+      # enable features 
+      c.headers_enabled = true
+      c.version_info_enabled = true
+      #register metrics 
       c.register_metric 'env' , ENV, '*Nix environment'
-      c.enabled_headers true #set this to get your HTTP headers in dashboard
+      c.register_metric 'my_metric', {:foo => 'bar'}
     end
+
 
 == Assumptions
 
@@ -23,6 +29,13 @@ The revision displayed on the footer will look for a REVISION file which is comm
 == Security
 
 You should use a Rails constraint when mounting the app or implement your own auth around the mount point. There is NO security built into to this GEM as it exposes nothing by default other than a blank page and a little info.
+
+    # your wonderful routes file
+    constraint = lambda { |request| request.env["warden"].authenticate? and request.env['warden'].user.is_admin? }
+    constraints contraint do
+      mount Readouts::Web => '/readouts'
+    end
+
 
 == Testing
 
