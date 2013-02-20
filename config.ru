@@ -1,6 +1,6 @@
 require './lib/readouts'
 
-Readouts::MetricsInfo.configure do |c|
+Readouts.configure do |c|
   # configure the basics about your app
   c.app_name = 'My Great App'
   c.github_base_url = 'https://github.com/blasterpal/readouts'

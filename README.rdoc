@@ -39,7 +39,7 @@ You should use a Rails constraint when mounting the app or implement your own au
 
 == Testing
 
-rake test
+    rake test
 
 == Development and standalone testing
 
