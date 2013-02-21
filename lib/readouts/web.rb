@@ -1,13 +1,11 @@
 require 'sinatra'
 require 'sinatra/base'
-require 'haml'
 
 module Readouts
   class Web < Sinatra::Base
     
-    dir = File.expand_path(File.dirname(__FILE__) + "/../../web")
+    dir = File.expand_path(File.dirname(__FILE__) + "/../web")
     set :views,  "#{dir}/views"
-    #set :public_folder, "#{dir}/public"
 
     helpers do
       #get some model data here
@@ -29,4 +27,3 @@ module Readouts
     end
   end
 end
-
